@@ -4,7 +4,8 @@
   "description": "practice project creating a calculator that uses the full stack and is deployed on my personal portfolio site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/KevinDahlberg/full-stack-calculator/issues"
   },
-  "homepage": "https://github.com/KevinDahlberg/full-stack-calculator#readme"
+  "homepage": "https://github.com/KevinDahlberg/full-stack-calculator#readme",
+  "keywords": [
+    "full",
+    "stack",
+    "calculator"
+  ],
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jquery": "^3.2.1",
+    "pg": "^6.1.5"
+  }
 }
