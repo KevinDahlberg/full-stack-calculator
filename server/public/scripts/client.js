@@ -1,25 +1,18 @@
-function operations (type, operation){
-  this.type = type;
-  this.operation = operation;
-}
-
-var operationsArray = [
-    {type: "add", operation: "+"},
-    {type: "subtract", operation: "-"},
-    {type: "multiply", operation: "x"},
-    {type: "divide", operation: "÷"},
-    {type: "equals", operation: "="}];
-
 $(function(){
   console.log("Please be gentle.  It's my first time.");
-  console.log(operationsArray);
   getOperators();
+
+  $('#calculator').on('click', 'button', function(){
+    console.log($(this).data('number') + " button clicked");
+    $('#numInput').val($(this).data('number'));
+  });
+
 });// end Document Ready
 
 //creates buttons for calculator
 function createButtons(array){
   for (var i = 0; i < 10; i++) {
-    $('#calculator').append("<button class=number>" + i + "</button>");
+    $('#calculator').append("<button class=number data-number='"+i+"'>" + i + "</button>");
   }
   for (var j = 0; j < array.length; j++) {
     console.log(array[j]);
