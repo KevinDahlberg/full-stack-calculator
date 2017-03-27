@@ -4,7 +4,7 @@ $(function(){
 
   $('#calculator').on('click', 'button', function(){
     console.log($(this).data('number') + " button clicked");
-    $('#numInput').val($(this).data('number'));
+    $('#numInput').val($('#numInput').val() + $(this).data('number'));
   });
 
 });// end Document Ready
