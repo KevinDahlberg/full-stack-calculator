@@ -1,12 +1,13 @@
+var inputOne;
+var inputTwo;
+var answer;
 $(function(){
   console.log("Please be gentle.  It's my first time.");
   getOperators();
 
   $('#calculator').on('click', 'button', function(){
-    console.log($(this).data('number') + " button clicked");
-    $('#numInput').val($('#numInput').val() + $(this).data('number'));
+    numberInput($(this).data('number'));
   });
-
 });// end Document Ready
 
 //creates buttons for calculator
@@ -17,7 +18,7 @@ function createButtons(array){
   for (var j = 0; j < array.length; j++) {
     console.log(array[j]);
     $('#calculator').append("<button class=operations id='" + array[j].type +
-                            "'>" + array[j].operation + "</button>");
+    "'>" + array[j].operation + "</button>");
   }
 }
 
@@ -34,8 +35,21 @@ function getOperators (){
   }); // end ajax
 }
 
+//function called when buttons are clicked
+function numberInput (number){
+  console.log(number);
+  if (number) {
+    $('#numInput').val($('#numInput').val() + number);
+  } else if (typeof inputOne === "undefined"){
+    inputOne = $('#numInput').val();
+    $('#numInput').val('');
+  } else {
+    inputTwo = $('#numInput').val();
+    operations (inputOne, inputTwo);
+  }
+}
 //statement for operations
 function operations (inputOne, inputTwo){
-  var answer = inputOne + inputTwo;
-  $("#numInput").val("answer");
+  answer = parseInt(inputOne) + parseInt(inputTwo);
+  $("#numInput").val(answer);
 }
