@@ -21,13 +21,16 @@
 
 *Tasks*
 
-- [] create MVP
-  - [] build calculator buttons and div on the DOM
-  - [] put operators on the DB
-  - [] get operators from the DB and put them as buttons on the DOM
+- [x] create MVP
+  - [x] build calculator buttons and div on the DOM
+  - [x] put operators on the DB
+  - [x] get operators from the DB and put them as buttons on the DOM
 - [] create logic on client side
+  - [x] MVP using add
+  - [] switch statement for other operators
+  - [] Clear button
+  - [] get out bugs, make calculator work the way it's supposed to work
 - [] add buttons for adding a "saved" value to the database
-- [] Clear button
 - [] connect buttons to the db
   - [] POST function to create the values
   - [] GET to retrieve the values
