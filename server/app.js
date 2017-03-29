@@ -7,8 +7,7 @@ var operators = require("./routes/operators.js");
 var port = 4000;
 
 //uses
-app.use(express.static('server/public', {
-  index: 'views/index.html'}));
+app.use(express.static('server/public', {index: 'views/index.html'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/operators', operators);
 

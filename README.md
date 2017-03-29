@@ -27,7 +27,7 @@
   - [x] get operators from the DB and put them as buttons on the DOM
 - [] create logic on client side
   - [x] MVP using add
-  - [] switch statement for other operators
+  - [x] switch statement for other operators
   - [] Clear button
   - [] get out bugs, make calculator work the way it's supposed to work
 - [] add buttons for adding a "saved" value to the database

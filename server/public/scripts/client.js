@@ -5,13 +5,29 @@ var operation;
 
 $(function(){
   console.log("Please be gentle.  It's my first time.");
-  getOperators();
-
-  $('#calculator').on('click', 'button', function(){
-    numberInput($(this).data());
-  });
+  init();
 });// end Document Ready
 
+//init function
+function init(){
+  eventListeners(true);
+  getOperators();
+}
+
+function eventListeners(value){
+  if(value){
+  // $('#calculator').on('click', buttonInput);
+  $('#calculator').on('click', '.number', buttonInput);
+  $('#calculator').on('click', '.operations', buttonInput);
+} else {
+  $('#calculator').off('click');
+}
+}
+
+function buttonInput(){
+  var input = ($(this).data());
+  numberInput(input);
+}
 //creates buttons for calculator
 function createButtons(array){
   for (var i = 0; i < 10; i++) {
@@ -39,20 +55,31 @@ function getOperators (){
 
 //function called when buttons are clicked
 function numberInput (data){
-  console.log(data.number, data.id);
-  if (data.number) {
-    $('#numInput').val($('#numInput').val() + data.number);
-  } else if (typeof inputOne === "undefined"){
-    inputOne = $('#numInput').val();
-    operation = data.id;
-    $('#numInput').val('');
-  // } else if (typeof operation === "undefined") {
-  //   operation = data.id;
-  } else {
-    inputTwo = $('#numInput').val();
-    operations (inputOne, inputTwo, operation);
+  // switch (data){
+    if (data.number) {
+      console.log(data.number);
+    } else {
+      console.log(data.id);
+    }
+
+    // :
+    // console.log(data.number);
+    //   $('#numInput').val($('#numInput').val() + data.number);
+    //   break;
+    // default:
+    // console.log('nope');
+    // case typeof inputOne === "undefined":
+    // console.log(data.id);
+    // inputOne = $('#numInput').val();
+    // operation = data.id;
+    // break;
+    // default:
+    // console.log(data.number + " number 2");
+    // inputTwo = $('#numInput').val();
+    // operations (inputOne, inputTwo, operation);
+    // break;
   }
-}
+
 //statement for operations
 function operations (inputOne, inputTwo, operation){
   switch (operation){
