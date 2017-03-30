@@ -14,20 +14,17 @@ function init(){
   getOperators();
 }
 
+//turns buttons on or off
 function eventListeners(value){
   if(value){
-  // $('#calculator').on('click', buttonInput);
-  $('#calculator').on('click', '.number', buttonInput);
-  $('#calculator').on('click', '.operations', buttonInput);
-} else {
-  $('#calculator').off('click');
-}
+    // $('#calculator').on('click', buttonInput);
+    $('#calculator').on('click', '.number', buttonInput);
+    $('#calculator').on('click', '.operations', buttonInput);
+  } else {
+    $('#calculator').off('click');
+  }
 }
 
-function buttonInput(){
-  var input = ($(this).data());
-  numberInput(input);
-}
 //creates buttons for calculator
 function createButtons(array){
   for (var i = 0; i < 10; i++) {
@@ -38,6 +35,74 @@ function createButtons(array){
     $('#calculator').append("<button class=operations data-id='" + array[j].type +
     "'>" + array[j].operation + "</button>");
   }
+}
+
+function buttonInput(){
+  var input;
+  if ($(this).data('number')){
+    input = ($(this).data('number'));
+    numberInput(input);
+  } else {
+    input = ($(this).data('id'));
+    operationInput(input);
+  }
+}
+
+function clearInput(){
+  $("#numInput").val('');
+}
+//function called when buttons are clicked
+function numberInput (data){
+  console.log($("#calculator").data('lastButton'));
+  // switch (data){
+  if ($("#calculator").data('lastButton')) {
+    clearInput();
+    $("#numInput").val(data);
+    $("#calculator").data('lastButton', false);
+  } else {
+    $('#numInput').val($('#numInput').val() + data);
+  }
+}
+
+//function called when an operator is pushed
+function operationInput(data){
+  console.log(data + " in operationInput path");
+  var $el = $("#calculator");
+  if($el.data('numberOne')){
+    console.log($("#calculator").data());
+    operations ($el.data('numberOne'), $("#numInput").val(), $el.data('operator'));
+  } else {
+    $el.data('numberOne', $("#numInput").val());
+    $el.data('operator', data);
+    $el.data('lastButton', true);
+  }
+  //put number through, with it hitting as if there was already a number on there and saved?
+
+}
+
+//statement for operations
+function operations (inputOne, inputTwo, operation){
+  console.log(inputOne, inputTwo, operation, "in operations path");
+  switch (operation){
+    case "add":
+    answer = parseInt(inputOne) + parseInt(inputTwo);
+    break;
+    case "subtract":
+    answer = parseInt(inputOne) - parseInt(inputTwo);
+    break;
+    case "multiply":
+    answer = parseInt(inputOne) * parseInt(inputTwo);
+    break;
+    case "divide":
+    answer = parseInt(inputOne) / parseInt(inputTwo);
+    break;
+    default:
+    console.log("Error finding answer");
+  }
+  console.log(answer);
+  $("#calculator").data('numberOne', inputTwo);
+  $("#numInput").val(answer);
+  $("#calculator").data('lastButton', true);
 }
 
 //get function to retrieve additional buttons from DOM
@@ -51,52 +116,4 @@ function getOperators (){
       createButtons(response);
     }
   }); // end ajax
-}
-
-//function called when buttons are clicked
-function numberInput (data){
-  // switch (data){
-    if (data.number) {
-      console.log(data.number);
-    } else {
-      console.log(data.id);
-    }
-
-    // :
-    // console.log(data.number);
-    //   $('#numInput').val($('#numInput').val() + data.number);
-    //   break;
-    // default:
-    // console.log('nope');
-    // case typeof inputOne === "undefined":
-    // console.log(data.id);
-    // inputOne = $('#numInput').val();
-    // operation = data.id;
-    // break;
-    // default:
-    // console.log(data.number + " number 2");
-    // inputTwo = $('#numInput').val();
-    // operations (inputOne, inputTwo, operation);
-    // break;
-  }
-
-//statement for operations
-function operations (inputOne, inputTwo, operation){
-  switch (operation){
-    case "add":
-      answer = parseInt(inputOne) + parseInt(inputTwo);
-      break;
-    case "subtract":
-      answer = parseInt(inputOne) - parseInt(inputTwo);
-      break;
-    case "multiply":
-      answer = parseInt(inputOne) * parseInt(inputTwo);
-      break;
-    case "divide":
-      answer = parseInt(inputOne) / parseInt(inputTwo);
-      break;
-    default:
-      console.log("Error finding answer");
-  }
-  $("#numInput").val(answer);
 }
