@@ -96,6 +96,11 @@ function operations (inputOne, inputTwo, operation){
     case "divide":
     answer = parseInt(inputOne) / parseInt(inputTwo);
     break;
+    case "equals":
+    $("calculator").removeData('operator');
+    console.log($("calculator").data('operator'));
+    inputTwo = undefined;
+    break;
     default:
     console.log("Error finding answer");
   }
