@@ -42,6 +42,17 @@ function buttonInput(){
   if ($(this).data('number')){
     input = ($(this).data('number'));
     numberInput(input);
+  } else if ($(this).data('id') === 'equals'){
+    operationInput(input);
+    $("calculator").removeData('numberOne');
+    console.log($("calculator").data('numberOne'));
+  } else if ($(this).data('id') === 'clear'){
+    clearInput();
+    $("calculator").data('numberOne', $("#numInput").val());
+    $("calculator").data('operator', $("#numInput").val());
+    $("calculator").data('lastButton', $("#numInput").val());
+    console.log($("calculator").data());
+
   } else {
     input = ($(this).data('id'));
     operationInput(input);
@@ -53,7 +64,7 @@ function clearInput(){
 }
 //function called when buttons are clicked
 function numberInput (data){
-  console.log($("#calculator").data('lastButton'));
+  // console.log($("#calculator").data('lastButton'));
   // switch (data){
   if ($("#calculator").data('lastButton')) {
     clearInput();
