@@ -28,10 +28,10 @@ function eventListeners(value){
 //creates buttons for calculator
 function createButtons(array){
   for (var i = 0; i < 10; i++) {
-    $('#calculator').append("<button class='col-md-1 number' data-number='"+i+"'>" + i + "</button>");
+    $('#buttons').append("<button class='number col-pull-"+i+"' data-number='"+i+"'>" + i + "</button>");
   }
   for (var j = 0; j < array.length; j++) {
-    $('#calculator').append("<button class='col-md-1 operations' data-id='" + array[j].type +
+    $('#buttons').append("<button class='operations col-pull-"+j+" operations' data-id='" + array[j].type +
     "'>" + array[j].operation + "</button>");
   }
 }

@@ -22,3 +22,7 @@ input {
 #header {
   text-align: center;
 }
+
+#buttons {
+  float: inherit;
+}
