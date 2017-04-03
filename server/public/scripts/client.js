@@ -49,7 +49,6 @@ function buttonInput(){
     clearInput();
     $("#calculator").removeData('numberOne');
     $("#calculator").removeData('operator');
-    $("#calculator").removeData('operatorTwo');
     // console.log($("calculator").data());
   } else {
     input = ($(this).data('id'));
@@ -60,14 +59,14 @@ function buttonInput(){
 function clearInput(){
   $("#numInput").val('');
 }
+
 //function called when buttons are clicked
 function numberInput (data){
   // console.log($("#calculator").data('lastButton'));
   // switch (data){
-  if ($("#calculator").data('lastButton')) {
+  if ($("#calculator").data('operator')) {
     clearInput();
     $("#numInput").val(data);
-    $("#calculator").data('lastButton', false);
   } else {
     $('#numInput').val($('#numInput').val() + data);
   }
@@ -77,20 +76,19 @@ function numberInput (data){
 function operationInput(data){
   // console.log(data + " in operationInput path");
   var $el = $("#calculator");
+
   if($el.data('numberOne')){
+    $el.data('operatorTwo', data);
     // console.log($("#calculator").data());
     operations ($el.data('numberOne'), $("#numInput").val(), $el.data('operator'));
   } else {
     $el.data('numberOne', $("#numInput").val());
     $el.data('operator', data);
-    $el.data('operatorTwo', null);
   }
-  //put number through, with it hitting as if there was already a number on there and saved?
-
 }
 
 //statement for operations
-function operations (inputOne, inputTwo, operation, operationTwo){
+function operations (inputOne, inputTwo, operation){
   console.log(inputOne, inputTwo, operation, "in operations path");
   switch (operation){
     case "add":
@@ -107,14 +105,17 @@ function operations (inputOne, inputTwo, operation, operationTwo){
     break;
     case "equals":
     console.log("equals clicked");
+    $('#calculator').removeData('operator');
     break;
     default:
     console.log("Error finding answer");
   }
   console.log(answer);
-  $("#calculator").data('numberOne', inputTwo);
+  $("#calculator").data('numberOne', answer);
+  var newOperator = $('#calculator').data('operatorTwo');
+  $('#calculator').data('operator', newOperator);
+  $('#calculator').removeData('operatorTwo');
   $("#numInput").val(answer);
-  $("#calculator").data('lastButton', true);
 }
 
 //get function to retrieve additional buttons from DOM
