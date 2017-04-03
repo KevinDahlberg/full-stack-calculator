@@ -11,6 +11,8 @@ app.use(express.static('server/public', {index: 'views/index.html'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/operators', operators);
 
+//git test
+
 //listening
 app.listen(port, function(){
   console.log("Listening to: ", port);

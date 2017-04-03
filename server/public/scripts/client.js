@@ -28,11 +28,10 @@ function eventListeners(value){
 //creates buttons for calculator
 function createButtons(array){
   for (var i = 0; i < 10; i++) {
-    $('#calculator').append("<button class=number data-number='"+i+"'>" + i + "</button>");
+    $('#calculator').append("<button class='col-md-1 number' data-number='"+i+"'>" + i + "</button>");
   }
   for (var j = 0; j < array.length; j++) {
-    console.log(array[j]);
-    $('#calculator').append("<button class=operations data-id='" + array[j].type +
+    $('#calculator').append("<button class='col-md-1 operations' data-id='" + array[j].type +
     "'>" + array[j].operation + "</button>");
   }
 }
@@ -44,15 +43,14 @@ function buttonInput(){
     numberInput(input);
   } else if ($(this).data('id') === 'equals'){
     operationInput(input);
-    $("calculator").removeData('numberOne');
-    console.log($("calculator").data('numberOne'));
+    $("#calculator").removeData('numberOne');
+    // console.log($("calculator").data('numberOne'));
   } else if ($(this).data('id') === 'clear'){
     clearInput();
-    $("calculator").data('numberOne', $("#numInput").val());
-    $("calculator").data('operator', $("#numInput").val());
-    $("calculator").data('lastButton', $("#numInput").val());
-    console.log($("calculator").data());
-
+    $("#calculator").removeData('numberOne');
+    $("#calculator").removeData('operator');
+    $("#calculator").removeData('operatorTwo');
+    // console.log($("calculator").data());
   } else {
     input = ($(this).data('id'));
     operationInput(input);
@@ -77,22 +75,22 @@ function numberInput (data){
 
 //function called when an operator is pushed
 function operationInput(data){
-  console.log(data + " in operationInput path");
+  // console.log(data + " in operationInput path");
   var $el = $("#calculator");
   if($el.data('numberOne')){
-    console.log($("#calculator").data());
+    // console.log($("#calculator").data());
     operations ($el.data('numberOne'), $("#numInput").val(), $el.data('operator'));
   } else {
     $el.data('numberOne', $("#numInput").val());
     $el.data('operator', data);
-    $el.data('lastButton', true);
+    $el.data('operatorTwo', null);
   }
   //put number through, with it hitting as if there was already a number on there and saved?
 
 }
 
 //statement for operations
-function operations (inputOne, inputTwo, operation){
+function operations (inputOne, inputTwo, operation, operationTwo){
   console.log(inputOne, inputTwo, operation, "in operations path");
   switch (operation){
     case "add":
@@ -108,9 +106,7 @@ function operations (inputOne, inputTwo, operation){
     answer = parseInt(inputOne) / parseInt(inputTwo);
     break;
     case "equals":
-    $("calculator").removeData('operator');
-    console.log($("calculator").data('operator'));
-    inputTwo = undefined;
+    console.log("equals clicked");
     break;
     default:
     console.log("Error finding answer");
@@ -123,12 +119,10 @@ function operations (inputOne, inputTwo, operation){
 
 //get function to retrieve additional buttons from DOM
 function getOperators (){
-  console.log("in GET path");
   $.ajax({
     type: "GET",
     url: "/operators",
     success: function(response){
-      console.log("GET Path finished");
       createButtons(response);
     }
   }); // end ajax
