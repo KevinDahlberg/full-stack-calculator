@@ -10,7 +10,25 @@
 
 </head>
 <body>
-  <div class="container-fluid col-md-8 centered" id="container">
+  <div id="container">
+      <div id="header">
+      <h1>Full Stack Calculator</h1>
+    </div>
+      <div id="numberDisplay ">
+        <form class="input" action="input" method="post">
+          <input type="text" readonly name="input" id="numInput" value="">
+        </form>
+      </div>
+      <div id="calculator">
+        <div id="buttons">
+        </div>
+        <div id="operators">
+        </div>
+      </div>
+      <!-- <button id="equals">=</button> -->
+  </div> <!-- end container div -->
+
+  <!-- <div class="container-fluid col-md-8 centered" id="container">
     <div class="row">
       <div class="col-md-6 centered" id="header">
       <h1>Full Stack Calculator</h1>
@@ -19,16 +37,19 @@
     <div class="row">
       <div class= "col-md-3 centered" id="numberDisplay ">
         <form class="input" action="input" method="post">
-          <input type="text" name="input" id="numInput" value="">
+          <input type="text" readonly name="input" id="numInput" value="">
         </form>
       </div>
       <div class="row" id="calculator">
-        <div class="col-md-4 centered" id="buttons">
+        <div class="col-md-12">
+        <div class="col-sm-3 centered" id="buttons">
+        </div>
+        <div class="col-sm-1 centered" id="operators">
         </div>
       </div>
-      <!-- <button id="equals">=</button> -->
     </div>
-  </div> <!-- end container div -->
-
+      <!- <button id="equals">=</button>
+    </div>
+  </div> -->
 </body>
 </html>

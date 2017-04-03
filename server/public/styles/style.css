@@ -8,7 +8,17 @@ input {
  #calculator {
    margin: 0 auto;
    padding: 10px;
+   width: 200px;
+   display: grid;
+   grid-template-columns: [first] 25% [line2] 25% [line3] 25% [line4] 25% [end];
+  grid-template-rows: [first-line] 25% [second-line] 25% [third-line] 25% [last-line] 25%;
  }
+
+ #number0 {
+   grid-column: first/line2;
+   grid-row: third-line/last-line;
+ }
+
 
  .centered {
    margin:0 auto;
@@ -17,12 +27,14 @@ input {
 
  button {
    margin: 10px;
+   height: 25px;
+   width: 25px;
+   text-align:justify;
  }
 
 #header {
   text-align: center;
 }
 
-#buttons {
-  float: inherit;
+#buttons, #operators{
 }

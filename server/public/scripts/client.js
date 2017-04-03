@@ -27,12 +27,35 @@ function eventListeners(value){
 
 //creates buttons for calculator
 function createButtons(array){
+  // $('#buttons').append('<div class="row" id="sevenToNine"></div>');
+  // $('#buttons').append('<div class="row" id="fourToSix"></div>');
+  // $('#buttons').append('<div class="row" id="oneToThree"></div>');
+  // $('#buttons').append('<div class="row" id="otherOperator"></div');
   for (var i = 0; i < 10; i++) {
-    $('#buttons').append("<button class='number col-pull-"+i+"' data-number='"+i+"'>" + i + "</button>");
+      // if
+    //   (i <= 3 && i > 0){
+    //   $('#oneToThree').append("<button class='number' data-number='"+i+"'>" + i + "</button>");
+    // } else if (i > 3 && i <= 6){
+    //   $('#fourToSix').append("<button class='number' data-number='"+i+"'>" + i + "</button>");
+    // } else if (i > 6 && i < 10){
+    //   $('#sevenToNine').append("<button class='number' data-number='"+i+"'>" + i + "</button>");
+    // } else if
+    // (i === 0){
+    //   $('#otherOperator').append("<button class='number' data-number='"+i+"'>" + i + "</button>");
+    // } else {
+    //
+    // }
+    $('#buttons').append("<button class='number' id='number"+i+"' data-number='"+i+"'>" + i + "</button>");
   }
   for (var j = 0; j < array.length; j++) {
-    $('#buttons').append("<button class='operations col-pull-"+j+" operations' data-id='" + array[j].type +
+    if (array[j].type === "equals"){
+      $('#otherOperator').append("<button class='number' data-id='"+array[j].type+"'>" + array[j].operation + "</button>");
+    } else if (array[j].type === "clear"){
+      $('#otherOperator').append("<button class='number' data-id='"+array[j].type+"'>" + array[j].operation + "</button>");
+    } else {
+    $('#operators').append("<button class='operations' id=operation"+j+" operations' data-id='" + array[j].type +
     "'>" + array[j].operation + "</button>");
+  }
   }
 }
 
