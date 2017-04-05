@@ -1,6 +1,12 @@
 input {
+  margin: 0 auto;
   text-align: right;
 }
+
+.inputClass {
+  width: 300px;
+}
+
  .container-fluid {
    margin: 0 auto;
  }
@@ -11,11 +17,13 @@ input {
   grid-template-columns: 33% 33%;
 }
 #header {
+  margin: 0 auto;
   grid-area: 1 / 2 / 2 / 3;
 }
 
 #numberDisplay {
   margin: 0 auto;
+  width: 300px;
   grid-area: 2 / 2 / 3 / 3;
 }
 
@@ -26,93 +34,109 @@ input {
    padding: 10px;
    grid-area: 3 / 2 / 4 / 3;
    display: grid;
-   grid-gap:10px;
+   grid-gap: 20px;
    grid-template-columns: 20% 20% 20% 20%;
  }
 
 
 
  #number0 {
+   margin: 0 auto;
    grid-area: 5 / 2 / 6 / 3;
  }
 
  #number1 {
+   margin: 0 auto;
    grid-area: 5 / 1 / 6 / 2;
  }
 
  #number2{
+   margin: 0 auto;
    grid-area: 4 / 1 / 5 / 2;
  }
 
  #number3{
+   margin: 0 auto;
    grid-area: 4 / 2 / 5 / 3;
  }
 
  #number4{
+   margin: 0 auto;
    grid-area: 4 / 3 / 5 / 4;
  }
 
  #number5{
+   margin: 0 auto;
    grid-area: 3 / 1 / 4 / 2;
  }
 
  #number6{
+   margin: 0 auto;
    grid-area: 3 / 2 / 4 / 3;
  }
 
  #number7{
+   margin: 0 auto;
    grid-area: 3 / 3 / 4 / 4;
  }
 
  #number8{
+   margin: 0 auto;
    grid-area: 2 / 1 / 3 / 2;
  }
 
  #number9{
+   margin: 0 auto;
    grid-area: 2 / 2 / 3 / 3;
  }
 
  #number10{
+   margin: 0 auto;
 grid-area: 2 / 3 / 3 / 4;
  }
 
  #operation0{
+   margin: 0 auto;
    grid-area: 5 / 4 / 6 / 5;
  }
 
  #operation1{
+   margin: 0 auto;
    grid-area: 2 / 4 / 3 / 5;
  }
 
  #operation2{
+   margin: 0 auto;
    grid-area: 3 / 4 / 4 / 5;
  }
 
  #operation3{
+   margin: 0 auto;
    grid-area: 4 / 4 / 5 / 5;
  }
 
  #operation4{
+   margin: 0 auto;
    grid-area: 5 / 3 / 6 / 4;
  }
 
  #operation5{
+   margin: 0 auto;
    grid-area: 1 / 4 / 2 / 5;
  }
 
- #operation6{
-   grid-area:
- }
-
  #operation7{
+   margin: 0 auto;
    grid-area:1 / 1 / 2 / 2;
  }
 
  #operation8{
+   margin: 0 auto;
    grid-area:1/ 2/ 2 / 3;
  }
 
  #operation9{
+   margin: 0 auto;
    grid-area:1 / 3 / 2 / 4;
  }
 
@@ -127,10 +151,3 @@ grid-area: 2 / 3 / 3 / 4;
    width: 40px;
    text-align:justify;
  }
-
-#header {
-  text-align: center;
-}
-
-#buttons, #operators{
-}
