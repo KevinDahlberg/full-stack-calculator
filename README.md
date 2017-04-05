@@ -39,4 +39,5 @@
 - [] Clear calculator when button is pressed after equation
 - [] Make other buttons besides equals work for getting a result
 - [] Put DOM together
+  - [] position buttons in the calculator
 - [] Deploy on Website

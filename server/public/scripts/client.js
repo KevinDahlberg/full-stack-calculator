@@ -27,12 +27,20 @@ function eventListeners(value){
 
 //creates buttons for calculator
 function createButtons(array){
-  for (var i = 0; i < 10; i++) {
-    $('#calculator').append("<button class='number' id='number"+i+"' data-number='"+i+"'>" + i + "</button>");
-  }
+  console.log(array);
+  // for (var i = 0; i < 10; i++) {
+  //   $('#calculator').append("<button class='number' id='number"+i+"' data-number='"+i+"'>" + i + "</button>");
+  // }
+  number = 0;
   for (var j = 0; j < array.length; j++) {
+    if (array[j].operation=== "null"){
+      $('#calculator').append("<button class='number' id=number"+number+" operations' data-id='" + array[j].number +
+      "'>" + array[j].number + "</button>");
+      number++;
+    } else if (array[j].number === "null"){
     $('#calculator').append("<button class='operations' id=operation"+j+" operations' data-id='" + array[j].type +
     "'>" + array[j].operation + "</button>");
+  }
   }
 }
 

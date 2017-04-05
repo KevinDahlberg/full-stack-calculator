@@ -77,6 +77,22 @@ input {
    grid-area: 4 / 2 / 5 / 3;
  }
 
+ #operation6{
+   grid-area:
+ }
+
+ #operation7{
+   grid-area:
+ }
+
+ #operation8{
+   grid-area:
+ }
+
+ #operation9{
+   grid-area:
+ }
+
  .centered {
    margin:0 auto;
    float: none;
