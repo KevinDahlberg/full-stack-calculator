@@ -12,10 +12,10 @@ INSERT INTO calculator (type, operation, number) VALUES
 ('divide', '÷', 'null'),
 ('equals', '=', 'null'),
 ('clear', 'C', 'null'),
-('decimal', '.', 'null'),
+('decimal', 'null', '.'),
 ('mPlus', 'M+', 'null'),
 ('mMinus', 'M-', 'null'),
-('mClear', 'MRC', 'null'),
+('mRecal', 'MR', 'null'),
 ('0', 'null', '0'),
 ('1', 'null', '1'),
 ('2', 'null', '2'),
@@ -25,4 +25,5 @@ INSERT INTO calculator (type, operation, number) VALUES
 ('6', 'null', '6'),
 ('7', 'null', '7'),
 ('8', 'null', '8'),
-('9', 'null', '9');
+('9', 'null', '9')
+;
