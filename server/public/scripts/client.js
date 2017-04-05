@@ -27,14 +27,10 @@ function eventListeners(value){
 
 //creates buttons for calculator
 function createButtons(array){
-  console.log(array);
-  // for (var i = 0; i < 10; i++) {
-  //   $('#calculator').append("<button class='number' id='number"+i+"' data-number='"+i+"'>" + i + "</button>");
-  // }
-  number = 0;
+  var number = 0;
   for (var j = 0; j < array.length; j++) {
     if (array[j].operation=== "null"){
-      $('#calculator').append("<button class='number' id=number"+number+" operations' data-id='" + array[j].number +
+      $('#calculator').append("<button class='number' id=number"+number+" operations' data-number='" + array[j].number +
       "'>" + array[j].number + "</button>");
       number++;
     } else if (array[j].number === "null"){
@@ -45,6 +41,8 @@ function createButtons(array){
 }
 
 function buttonInput(){
+  console.log($(this).data());
+  $('#calculator').data('lastInput', ($(this).data('id')));
   var input;
   if ($(this).data('number')){
     input = ($(this).data('number'));
@@ -58,7 +56,7 @@ function buttonInput(){
     $("#calculator").removeData('numberOne');
     $("#calculator").removeData('operator');
     // console.log($("calculator").data());
-  } else {
+  } else if ($(this).data('id')){
     input = ($(this).data('id'));
     operationInput(input);
   }
@@ -69,29 +67,31 @@ function clearInput(){
 }
 
 //function called when buttons are clicked
-function numberInput (data){
-  // console.log($("#calculator").data('lastButton'));
+function numberInput (input){
+  console.log($("#calculator").data('lastInput'));
   // switch (data){
-  if ($("#calculator").data('operator')) {
+  if ($("#calculator").data('lastInput')) {
     clearInput();
-    $("#numInput").val(data);
+    ($('#calculator').removeData('lastInput'));
+    $("#numInput").val(input);
   } else {
-    $('#numInput').val($('#numInput').val() + data);
+    $('#numInput').val($('#numInput').val() + input);
   }
 }
 
 //function called when an operator is pushed
-function operationInput(data){
+function operationInput(input){
+  console.log($("#calculator").data('lastInput'));
   // console.log(data + " in operationInput path");
   var $el = $("#calculator");
 
   if($el.data('numberOne')){
-    $el.data('operatorTwo', data);
+    $el.data('operatorTwo', input);
     // console.log($("#calculator").data());
     operations ($el.data('numberOne'), $("#numInput").val(), $el.data('operator'));
   } else {
     $el.data('numberOne', $("#numInput").val());
-    $el.data('operator', data);
+    $el.data('operator', input);
   }
 }
 
