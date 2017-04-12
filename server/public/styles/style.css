@@ -42,67 +42,70 @@ input {
 
  #number0 {
    margin: 0 auto;
-   grid-area: 5 / 2 / 6 / 3;
+   grid-area: 6 / 1 / 7 / 2;
+
  }
 
  #number1 {
    margin: 0 auto;
-   grid-area: 5 / 1 / 6 / 2;
+   grid-area: 6 / 2 / 7 / 3;
  }
 
  #number2{
    margin: 0 auto;
-   grid-area: 4 / 1 / 5 / 2;
+   grid-area: 5 / 1 / 6 / 2;
  }
 
  #number3{
    margin: 0 auto;
-   grid-area: 4 / 2 / 5 / 3;
+   grid-area: 5 / 2 / 6 / 3;
+
  }
 
  #number4{
    margin: 0 auto;
-   grid-area: 4 / 3 / 5 / 4;
+   grid-area: 5 / 3 / 6 / 4;
  }
 
  #number5{
    margin: 0 auto;
-   grid-area: 3 / 1 / 4 / 2;
+   grid-area: 4 / 1 / 5 / 2;
  }
 
  #number6{
    margin: 0 auto;
-   grid-area: 3 / 2 / 4 / 3;
+   grid-area: 4 / 2 / 5 / 3;
  }
 
  #number7{
    margin: 0 auto;
-   grid-area: 3 / 3 / 4 / 4;
+   grid-area: 4 / 3 / 5 / 4;
  }
 
  #number8{
    margin: 0 auto;
-   grid-area: 2 / 1 / 3 / 2;
+   grid-area: 3 / 1 / 4 / 2;
  }
 
  #number9{
    margin: 0 auto;
-   grid-area: 2 / 2 / 3 / 3;
+   grid-area: 3 / 2 / 4 / 3;
+
  }
 
  #number10{
    margin: 0 auto;
-grid-area: 2 / 3 / 3 / 4;
+   grid-area: 3 / 3 / 4 / 4;
  }
 
  #operation0{
    margin: 0 auto;
-   grid-area: 5 / 4 / 6 / 5;
+   grid-area: 6 / 4 / 7 / 5;
  }
 
  #operation1{
    margin: 0 auto;
-   grid-area: 2 / 4 / 3 / 5;
+   grid-area: 5 / 4 / 6 / 5;
  }
 
  #operation2{
@@ -117,12 +120,12 @@ grid-area: 2 / 3 / 3 / 4;
 
  #operation4{
    margin: 0 auto;
-   grid-area: 5 / 3 / 6 / 4;
+   grid-area: 6 / 3 / 7 / 4;
  }
 
  #operation5{
    margin: 0 auto;
-   grid-area: 1 / 4 / 2 / 5;
+   grid-area: 2 / 4 / 3 / 5;
  }
 
  #operation7{
@@ -138,6 +141,30 @@ grid-area: 2 / 3 / 3 / 4;
  #operation9{
    margin: 0 auto;
    grid-area:1 / 3 / 2 / 4;
+ }
+
+ #operation10{
+   margin: 0 auto;
+   grid-area: 1 / 4 / 2 / 5;
+
+ }
+
+ #operation11{
+   margin: 0 auto;
+   grid-area: 2 / 2 / 3 / 3;
+
+ }
+
+ #operation12{
+   margin: 0 auto;
+   grid-area: 2 / 3 / 3 / 4;
+
+ }
+
+ #operation13{
+   margin: 0 auto;
+   grid-area: 2 / 1 / 3 / 2;
+
  }
 
  .centered {
