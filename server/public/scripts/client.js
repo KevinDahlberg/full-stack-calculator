@@ -73,10 +73,11 @@ function buttonInput(){
     $("#calculator").removeData();
     //$("#calculator").data('numberOne', answer);
   } else if ($el.data('id') === 'sqRoot'){
-    answer = $('#numInput').val() / $('#numInput').val();
-    clearInput();
-    $('#numInput').val(answer);
-    $("#calculator").removeData();
+    // answer = $('#numInput').val() / $('#numInput').val();
+
+    input = $('#numInput').val();
+    console.log('sqroot pressed with ', input);
+    sqRoot(input);
   } else if ($el.data('id') === 'plusMinus'){
     //code that changes the value from positive to negative
   } else if ($el.data('id') === 'mPlus'){
@@ -169,6 +170,20 @@ function operations (inputOne, inputTwo, operation){
   $('#calculator').data('operator', newOperator);
   $('#calculator').removeData('operatorTwo');
   $("#numInput").val(answer);
+}
+
+function sqRoot(input){
+  console.log('in sqRoot Path');
+  var i = 0;
+  var number = parseInt(input);
+  while ((i*i)<number){
+    i++;
+    if((i*i)===number){
+      clearInput();
+      $("#calculator").removeData();
+      $('#numInput').val(i);
+    }
+  }
 }
 
 //get function to retrieve additional buttons from DOM
