@@ -182,10 +182,20 @@ function getOperators (){
   }); // end ajax
 }
 
+function mAdd() {
+  $.ajax({
+    type: "POST",
+    url: "memory/madd",
+    success: function(response){
+      //code to update input field
+    }
+  });
+}
+
 function mPlus () {
   $.ajax({
-    type: "UPDATE",
-    url: "memory/mPlus",
+    type: "PUT",
+    url: "memory/mplus",
     success: function(response){
       //code to update Input field
     }
@@ -195,7 +205,7 @@ function mPlus () {
 function mRecal () {
   $.ajax({
     type: "GET",
-    url: "memory/mRecal",
+    url: "memory/mrecal",
     success: function (response){
       //code to display value on input field
     }
@@ -205,7 +215,7 @@ function mRecal () {
 function mDelete () {
   $.ajax({
     type: "DELETE",
-    url: "memory/mDelete",
+    url: "memory/mdelete",
     success: function (response){
       //code that shows cleared DOM
     }
