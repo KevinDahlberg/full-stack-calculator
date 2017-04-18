@@ -2,10 +2,10 @@
 
 ## Install dependencies from package.json.  DB reconstruction in database.sql.
 
-* Project Overview*
+* Project Overview
 - Basic calculator putting into practice the material learned in the first half of PRIME digital academy
 
-* Technology Used*
+* Technology Used
 - HTML
 - CSS
 - javascript
@@ -38,9 +38,9 @@
     - [ ] M-
     - [ ] MR
     - [ ] MC
-    - [ ] Square root
+    - [x] Square root
     - [ ] +/-
-    - [ ] Square
+    - [x] Square
   - [ ] get out bugs, make calculator work the way it's supposed to work
     - [ ] make decimal work
 - [ ] connect buttons to the db (CRUD)

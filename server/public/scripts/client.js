@@ -81,7 +81,9 @@ function buttonInput(){
   } else if ($el.data('id') === 'plusMinus'){
     //code that changes the value from positive to negative
   } else if ($el.data('id') === 'mPlus'){
-    //put statement to update stored number
+    console.log('in mPlus path');
+    input = $('#numInput').val();
+    memoryAdd(input);
   } else if ($el.data('id') === 'mMinus'){
     //put statement to update stored number
   } else if ($el.data('id') === 'mRecal'){
@@ -172,6 +174,12 @@ function operations (inputOne, inputTwo, operation){
   $("#numInput").val(answer);
 }
 
+/*
+Function that figures out the square root of the input number by starting
+at zero and adding one each time it runs through the while loop.  When the
+product of i squared equals the input number, the while loop stops and appends
+the result to the input field
+*/
 function sqRoot(input){
   console.log('in sqRoot Path');
   var i = 0;
@@ -186,6 +194,24 @@ function sqRoot(input){
   }
 }
 
+//memory functions
+
+/*
+Function that first checks to see if there is a value saved in the DB for the
+calc memory.  If there is a value, add it to the current input and update the DB
+with the new number.  If there is no value, post the input value to the DB.
+*/
+function memoryAdd (input){
+  mRecal('memory');
+  var response = $("#numInput").val();
+  if (response){
+    var updatedNum = parseInt(input) + parseInt(response);
+    mPlus('memory', updatedNum);
+  } else {
+    mAdd('memory', input);
+  }
+}
+
 //get function to retrieve additional buttons from DOM
 function getOperators (){
   $.ajax({
@@ -197,32 +223,39 @@ function getOperators (){
   }); // end ajax
 }
 
-function mAdd() {
+
+function mAdd(name, input) {
   $.ajax({
     type: "POST",
     url: "memory/madd",
+    data: {name: name, value: input},
     success: function(response){
-      //code to update input field
+      mRecal('memory');
     }
   });
 }
 
-function mPlus () {
+function mPlus (name, value) {
   $.ajax({
     type: "PUT",
     url: "memory/mplus",
+    data: {name: name, value: value},
     success: function(response){
-      //code to update Input field
+      mRecal();
     }
   });
 }
 
-function mRecal () {
+//Gets value of memory from the DB, displays to the input, and clears any data
+function mRecal (type) {
   $.ajax({
     type: "GET",
     url: "memory/mrecal",
+    data: type,
     success: function (response){
-      //code to display value on input field
+      clearInput();
+      $('#numInput').val(response[0].value);
+      $("#calculator").removeData();
     }
   });
 }

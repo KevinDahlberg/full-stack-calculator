@@ -20,7 +20,7 @@ router.get('/mrecal', function(req, res){
       res.send(500);
     } else {
       console.log("connected");
-      client.query('SELECT * From "functions";', function(queryError, result){
+      client.query('SELECT * FROM functions LIMIT 1;', function(queryError, result){
         done();
         if(queryError){
           console.log("Error making query.");
@@ -36,7 +36,7 @@ router.get('/mrecal', function(req, res){
 
 //post function to add list item to database
 router.post('/madd', function(req, res){
-  console.log(req.body);
+  console.log('in post path, ', req.body);
   var name = req.body.name;
   var value = req.body.value;
   pool.connect(function(errorConnectingToDatabase, client, done){
@@ -49,7 +49,7 @@ router.post('/madd', function(req, res){
         done();
         if(queryError){
           console.log("Error making query.");
-          res.send(500);
+          res.sendStatus(500);
         } else {
           res.sendStatus(201);
         }
@@ -85,18 +85,18 @@ pool.connect(function(errorConnectingToDatabase, client, done){
 router.put('/mplus', function(req, res){
   console.log(req.body);
   var value = req.body.value;
-  var id = req.body.id;
+  var name = req.body.name;
   pool.connect(function(errorConnectingToDatabase, client, done){
     if(errorConnectingToDatabase) {
       console.log("Error connecting to DB");
       res.send(500);
     } else {
       console.log("connected");
-      client.query('UPDATE "list" SET "value" = $2 WHERE "id" = $1', [id, value], function(queryError, result){
+      client.query('UPDATE "functions" SET "value" = $2 WHERE "name" = $1;', [name, value], function(queryError, result){
         done();
         if(queryError){
           console.log("Error making query.");
-          res.send(500);
+          res.sendStatus(500);
         } else {
           res.sendStatus(201);
         }
@@ -104,3 +104,5 @@ router.put('/mplus', function(req, res){
     }
   });
 }); //end PUT function
+
+module.exports = router;
