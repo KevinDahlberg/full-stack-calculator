@@ -93,15 +93,6 @@ function buttonInput(){
   }
 }
 
-//clears the input
-function clearInput(){
-  $("#numInput").val('');
-}
-
-function clearData(){
-  $('#calculator').removeData();
-}
-
 /* function called when buttons are clicked.
 if there is information for the last input pressed, the calculator clears the
 input field and lastInput from data.
@@ -216,6 +207,7 @@ function memoryAdd (input){
   clearInput();
   mRecal('memory');
   var response = $("#numInput").val();
+  console.log('The memoryAdd respons is ', response);
   if (response){
     var updatedNum = parseInt(input) + parseInt(response);
     mPlus('memory', updatedNum);
@@ -224,20 +216,32 @@ function memoryAdd (input){
   }
 }
 
+/*
+M- button.
+*/
 function memoryMinus (input){
   clearInput();
   mRecal('memory');
-  var response = $('#numInput').val();
-  console.log(response);
-  if (response){
-    var updatedNum = parseInt(response) - parseInt (input);
-    console.log(updatedNum);
-    mPlus('memory', updatedNum);
-  } else {
-    var negativeNum = 0 - parseInt(input);
-    console.log(negativeNum);
-    mAdd('memory', negativeNum);
-  }
+  var oldNum = $('#numInput').val();
+  console.log('The old number is, ', oldNum);
+  // if (oldNum){
+  //   var updatedNum = parseInt(oldNum) - parseInt (input);
+  //   console.log('the updated number is', updatedNum);
+  //   mPlus('memory', updatedNum);
+  // } else {
+  //   var negativeNum = -Math.abs(input);
+  //   console.log('the new input is', negativeNum);
+  //   mAdd('memory', negativeNum);
+  // }
+}
+
+//clears the input
+function clearInput(){
+  $("#numInput").val('');
+}
+
+function clearData(){
+  $('#calculator').removeData();
 }
 
 //get function to retrieve additional buttons from DOM

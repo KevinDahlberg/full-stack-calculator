@@ -19,14 +19,14 @@ router.get('/mrecal', function(req, res){
       console.log("Error connecting to DB");
       res.send(500);
     } else {
-      console.log("connected");
+      console.log('get received');
       client.query('SELECT * FROM functions LIMIT 1;', function(queryError, result){
         done();
         if(queryError){
           console.log("Error making query.");
           res.sendStatus(500);
         } else {
-          console.log("function sent");
+          console.log('sending mrecal to client side');
           res.send(result.rows);
         }
       });
