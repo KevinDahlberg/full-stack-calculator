@@ -34,7 +34,7 @@
   - [x] switch statement for other operators
   - [X] Clear button
   - [ ] Create logic for additional buttons
-    - [ ] M+
+    - [x] M+
     - [ ] M-
     - [ ] MR
     - [ ] MC

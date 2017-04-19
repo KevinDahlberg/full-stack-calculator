@@ -59,16 +59,16 @@ router.post('/madd', function(req, res){
 });// end post function
 
 //DELETE function to delete from search database
-router.delete('/mdelete/:mID', function(req, res){
+router.delete('/mdelete/:type', function(req, res){
   console.log("in the delete function: ", req.params);
-  var id = req.params.mID;
+  var name = req.params.type;
 pool.connect(function(errorConnectingToDatabase, client, done){
   if(errorConnectingToDatabase) {
     console.log("Error connecting to DB");
     res.send(500);
   } else {
     console.log("connected");
-    client.query('DELETE FROM functions WHERE "id" = $1', [id], function(queryError, result){
+    client.query('DELETE FROM functions WHERE "name" = $1', [name], function(queryError, result){
       done();
       if(queryError){
         console.log("Error making query.");
@@ -83,7 +83,7 @@ pool.connect(function(errorConnectingToDatabase, client, done){
 
 //put function to update saved memory value in database
 router.put('/mplus', function(req, res){
-  console.log(req.body);
+  console.log('in put path', req.body);
   var value = req.body.value;
   var name = req.body.name;
   pool.connect(function(errorConnectingToDatabase, client, done){
@@ -91,7 +91,6 @@ router.put('/mplus', function(req, res){
       console.log("Error connecting to DB");
       res.send(500);
     } else {
-      console.log("connected");
       client.query('UPDATE "functions" SET "value" = $2 WHERE "name" = $1;', [name, value], function(queryError, result){
         done();
         if(queryError){

@@ -34,9 +34,9 @@ function createButtons(array){
       "'>" + array[j].number + "</button>");
       number++;
     } else if (array[j].number === "null"){
-    $('#calculator').append("<button class='operations' id=operation"+j+" operations' data-id='" + array[j].type +
-    "'>" + array[j].operation + "</button>");
-  }
+      $('#calculator').append("<button class='operations' id=operation"+j+" operations' data-id='" + array[j].type +
+      "'>" + array[j].operation + "</button>");
+    }
   }
 }
 
@@ -54,11 +54,8 @@ makes it possible for the second set of numbers to be pressed.
 function buttonInput(){
   var $el = $(this);
   $('#calculator').data('lastInput', ($el.data('id')));
-  var input;
-  if ($el.data('number')){
-    input = ($el.data('number'));
-    numberInput(input);
-  } else if ($el.data('id') === 'equals'){
+  var input = $('#numInput').val();
+  if ($el.data('id') === 'equals'){
     operationInput(input);
     $("#calculator").removeData('numberOne');
   } else if ($el.data('id') === 'clear'){
@@ -73,27 +70,26 @@ function buttonInput(){
     $("#calculator").removeData();
     //$("#calculator").data('numberOne', answer);
   } else if ($el.data('id') === 'sqRoot'){
-    // answer = $('#numInput').val() / $('#numInput').val();
-
-    input = $('#numInput').val();
     console.log('sqroot pressed with ', input);
     sqRoot(input);
   } else if ($el.data('id') === 'plusMinus'){
     //code that changes the value from positive to negative
   } else if ($el.data('id') === 'mPlus'){
     console.log('in mPlus path');
-    input = $('#numInput').val();
     memoryAdd(input);
   } else if ($el.data('id') === 'mMinus'){
-    //put statement to update stored number
+    console.log('in mMinus path', input);
+    memoryMinus(input);
   } else if ($el.data('id') === 'mRecal'){
-    //retieves saved number from DB
+    mRecal('memory');
   } else if ($el.data('id') === 'mClear'){
-    //clears stored number from DB
+    mDelete('memory');
   }
   else if ($el.data('id')){
     input = ($el.data('id'));
     operationInput(input);
+  }   else if ($el.data('number')!=='undefined'){
+    numberInput($el.data('number'));
   }
 }
 
@@ -111,8 +107,7 @@ that number to the input field.
 */
 function numberInput (input){
   console.log($("#calculator").data('lastInput'));
-  // switch (data){
-  if ($("#calculator").data('lastInput')) {
+  if ($("#calculator").data('lastInput')){
     clearInput();
     ($('#calculator').removeData('lastInput'));
     $("#numInput").val(input);
@@ -202,6 +197,7 @@ calc memory.  If there is a value, add it to the current input and update the DB
 with the new number.  If there is no value, post the input value to the DB.
 */
 function memoryAdd (input){
+  clearInput();
   mRecal('memory');
   var response = $("#numInput").val();
   if (response){
@@ -209,6 +205,22 @@ function memoryAdd (input){
     mPlus('memory', updatedNum);
   } else {
     mAdd('memory', input);
+  }
+}
+
+function memoryMinus (input){
+  clearInput();
+  mRecal('memory');
+  var response = $('#numInput').val();
+  console.log(response);
+  if (response){
+    var updatedNum = parseInt(response) - parseInt (input);
+    console.log(updatedNum);
+    mPlus('memory', updatedNum);
+  } else {
+    var negativeNum = 0 - parseInt(input);
+    console.log(negativeNum);
+    mAdd('memory', negativeNum);
   }
 }
 
@@ -253,6 +265,7 @@ function mRecal (type) {
     url: "memory/mrecal",
     data: type,
     success: function (response){
+      console.log(response);
       clearInput();
       $('#numInput').val(response[0].value);
       $("#calculator").removeData();
@@ -260,12 +273,13 @@ function mRecal (type) {
   });
 }
 
-function mDelete () {
+function mDelete (type) {
   $.ajax({
     type: "DELETE",
-    url: "memory/mdelete",
+    url: "memory/mdelete/"+type+'/',
     success: function (response){
-      //code that shows cleared DOM
+      clearInput();
+      console.log(response);
     }
   });
 }
