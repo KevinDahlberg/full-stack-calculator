@@ -73,7 +73,7 @@ function buttonInput(){
     console.log('sqroot pressed with ', input);
     sqRoot(input);
   } else if ($el.data('id') === 'plusMinus'){
-    //code that changes the value from positive to negative
+    plusMinus(input);
   } else if ($el.data('id') === 'mPlus'){
     console.log('in mPlus path');
     memoryAdd(input);
@@ -96,6 +96,10 @@ function buttonInput(){
 //clears the input
 function clearInput(){
   $("#numInput").val('');
+}
+
+function clearData(){
+  $('#calculator').removeData();
 }
 
 /* function called when buttons are clicked.
@@ -189,10 +193,16 @@ function sqRoot(input){
   }
 }
 
-function negativeMinus(input){
+function plusMinus(input){
+  var answer;
   if (parseInt(input)>0) {
     answer = -Math.abs(input);
+  } else if (parseInt(input)<0) {
+    answer = Math.abs(input);
   }
+  clearInput();
+  $('#numInput').val(answer);
+  clearData();
 }
 
 //memory functions
