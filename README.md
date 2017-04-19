@@ -26,7 +26,7 @@
   - [x] build calculator buttons and div on the DOM
   - [x] put operators on the DB
   - [x] get operators from the DB and put them as buttons on the DOM
-- [ ] create additional buttons and pull from DB
+- [x] create additional buttons and pull from DB
   - [x] numbers
   - [x] operators
 - [ ] create logic on client side
@@ -36,18 +36,18 @@
   - [ ] Create logic for additional buttons
     - [x] M+
     - [ ] M-
-    - [ ] MR
-    - [ ] MC
+    - [x] MR
+    - [x] MC
     - [x] Square root
     - [ ] +/-
     - [x] Square
   - [ ] get out bugs, make calculator work the way it's supposed to work
     - [ ] make decimal work
 - [ ] connect buttons to the db (CRUD)
-  - [ ] POST function to create the values
-  - [ ] GET to retrieve the values
-  - [ ] PUT to edit values
-  - [ ] Delete to Delete values
+  - [x] POST function to create the values
+  - [x] GET to retrieve the values
+  - [x] PUT to edit values
+  - [x] Delete to Delete values
 - [x] Clear calculator when button is pressed after equation
 - [x] Make other buttons besides equals work for getting a result
 - [ ] Put DOM together

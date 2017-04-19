@@ -189,6 +189,12 @@ function sqRoot(input){
   }
 }
 
+function negativeMinus(input){
+  if (parseInt(input)>0) {
+    answer = -Math.abs(input);
+  }
+}
+
 //memory functions
 
 /*
