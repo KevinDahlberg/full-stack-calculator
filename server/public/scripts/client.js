@@ -60,13 +60,9 @@ function buttonInput(){
     clearInput();
     clearData();
   } else if ($el.data('id') === 'square'){
-    answer = $('#numInput').val() * $('#numInput').val();
-    clearInput();
-    $('#numInput').val(answer);
-    $("#calculator").removeData();
+    square(input);
     //$("#calculator").data('numberOne', answer);
   } else if ($el.data('id') === 'sqRoot'){
-    console.log('sqroot pressed with ', input);
     sqRoot(input);
   } else if ($el.data('id') === 'plusMinus'){
     plusMinus(input);
@@ -79,6 +75,7 @@ function buttonInput(){
   } else if ($el.data('id') === 'mRecal'){
     memoryRecal();
   } else if ($el.data('id') === 'mClear'){
+    $('#numInput').removeData('mem');
     mDelete('memory');
   }
   else if ($el.data('id')){
@@ -89,6 +86,11 @@ function buttonInput(){
   }
 }
 
+function square(input){
+  clearInput();
+  $('#numInput').val(input*input);
+  $("#calculator").removeData();
+}
 /* function called when buttons are clicked.
 if there is information for the last input pressed, the calculator clears the
 input field and lastInput from data.
@@ -202,9 +204,10 @@ with the new number.  If there is no value, post the input value to the DB.
 function memoryAdd (input){
   clearInput();
   var oldNum = $('#numInput').data('mem');
-  console.log('The memoryAdd respons is ', response);
+  console.log('The memoryAdd respons is ', oldNum);
   if (oldNum){
     var updatedNum = parseInt(input) + parseInt(oldNum);
+    console.log('Updated Num is ', updatedNum );
     mPlus('memory', updatedNum);
   } else {
     mAdd('memory', input);
