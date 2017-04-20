@@ -12,6 +12,7 @@ $(function(){
 function init(){
   eventListeners(true);
   getOperators();
+  mRecal('memory');
 }
 
 //turns buttons on or off
@@ -81,7 +82,7 @@ function buttonInput(){
     console.log('in mMinus path', input);
     memoryMinus(input);
   } else if ($el.data('id') === 'mRecal'){
-    mRecal('memory');
+    memoryRecal();
   } else if ($el.data('id') === 'mClear'){
     mDelete('memory');
   }
@@ -205,11 +206,10 @@ with the new number.  If there is no value, post the input value to the DB.
 */
 function memoryAdd (input){
   clearInput();
-  mRecal('memory');
-  var response = $("#numInput").val();
+  var oldNum = $('#numInput').data('mem');
   console.log('The memoryAdd respons is ', response);
-  if (response){
-    var updatedNum = parseInt(input) + parseInt(response);
+  if (oldNum){
+    var updatedNum = parseInt(input) + parseInt(oldNum);
     mPlus('memory', updatedNum);
   } else {
     mAdd('memory', input);
@@ -220,19 +220,32 @@ function memoryAdd (input){
 M- button.
 */
 function memoryMinus (input){
-  clearInput();
-  mRecal('memory');
-  var oldNum = $('#numInput').val();
+  var oldNum = $('#numInput').data('mem');
   console.log('The old number is, ', oldNum);
-  // if (oldNum){
-  //   var updatedNum = parseInt(oldNum) - parseInt (input);
-  //   console.log('the updated number is', updatedNum);
-  //   mPlus('memory', updatedNum);
-  // } else {
-  //   var negativeNum = -Math.abs(input);
-  //   console.log('the new input is', negativeNum);
-  //   mAdd('memory', negativeNum);
-  // }
+  if (oldNum){
+    var updatedNum = parseInt(oldNum) - parseInt (input);
+    console.log('the updated number is', updatedNum);
+    mPlus('memory', updatedNum);
+  } else {
+    var negativeNum = -Math.abs(input);
+    console.log('the new input is', negativeNum);
+    mAdd('memory', negativeNum);
+  }
+}
+
+function memoryRecal () {
+  clearInput();
+  clearData();
+  mRecal('memory');
+  $('#numInput').val($('#numInput').data('mem'));
+}
+
+function memoryCheck (input){
+  if (input){
+    $('#numInput').data('mem', input);
+  } else {
+    console.log('no value in memory');
+  }
 }
 
 //clears the input
@@ -285,10 +298,8 @@ function mRecal (type) {
     url: "memory/mrecal",
     data: type,
     success: function (response){
-      console.log(response);
-      clearInput();
-      $('#numInput').val(response[0].value);
-      $("#calculator").removeData();
+      res = response[0].value;
+      memoryCheck(res);
     }
   });
 }
