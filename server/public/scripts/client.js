@@ -72,7 +72,10 @@ function buttonInput(){
   } else if ($el.data('id') === 'mMinus'){
     console.log('in mMinus path', input);
     memoryMinus(input);
+    mRecal('memory');
+    memoryRecal();
   } else if ($el.data('id') === 'mRecal'){
+    mRecal('memory');
     memoryRecal();
   } else if ($el.data('id') === 'mClear'){
     $('#numInput').removeData('mem');
@@ -86,11 +89,6 @@ function buttonInput(){
   }
 }
 
-function square(input){
-  clearInput();
-  $('#numInput').val(input*input);
-  $("#calculator").removeData();
-}
 /* function called when buttons are clicked.
 if there is information for the last input pressed, the calculator clears the
 input field and lastInput from data.
@@ -182,6 +180,20 @@ function sqRoot(input){
   }
 }
 
+/*
+function that figures out the square of a number by finding the product of the
+input multiplied by itself and posting it to the input field
+*/
+function square(input){
+  clearInput();
+  $('#numInput').val(input*input);
+  $("#calculator").removeData();
+}
+
+/*
+function that changes the value of the number in the input to either negative or
+positive
+*/
 function plusMinus(input){
   var answer;
   if (parseInt(input)>0) {
@@ -208,14 +220,16 @@ function memoryAdd (input){
   if (oldNum){
     var updatedNum = parseInt(input) + parseInt(oldNum);
     console.log('Updated Num is ', updatedNum );
-    mPlus('memory', updatedNum);
+    $.when(mPlus('memory', updatedNum)).then(mRecal('memory')).then(memoryRecal());
   } else {
-    mAdd('memory', input);
+    $.when(mAdd('memory', input)).then(memoryRecal());
   }
 }
 
 /*
-M- button.
+function for the M- button.  If there is a number saved on the input as a mem,
+the M- button subtracts the number from that number and updates the DB.  If there
+isn't a number saved, it adds a negative number to the DB
 */
 function memoryMinus (input){
   var oldNum = $('#numInput').data('mem');
@@ -231,18 +245,27 @@ function memoryMinus (input){
   }
 }
 
+/*
+function for the MR button. It calls the mRecal function which stores a number
+as data that gets displayed on #numInput
+*/
 function memoryRecal () {
   clearInput();
-  clearData();
+  $('#calculator').removeData('operatorTwo');
+  $('#calculator').removeData('operator');
+  $('#calculator').removeData('numberOne');
+  console.log($('#calculator').data());
   mRecal('memory');
-  $('#numInput').val($('#numInput').data('mem'));
 }
 
+/*
+Function that is called with the response for the mRecal function.  This function
+saves the value recieved from the DB as data on the #numInput
+*/
 function memoryCheck (input){
-  if (input){
     $('#numInput').data('mem', input);
-  } else {
-    console.log('no value in memory');
+   if ($('#calculator').data('lastInput')){
+    $('#numInput').val(input);
   }
 }
 
@@ -266,7 +289,7 @@ function getOperators (){
   }); // end ajax
 }
 
-
+//adds a value to the DB
 function mAdd(name, input) {
   $.ajax({
     type: "POST",
@@ -278,18 +301,19 @@ function mAdd(name, input) {
   });
 }
 
+//updates a value in the DB
 function mPlus (name, value) {
   $.ajax({
     type: "PUT",
     url: "memory/mplus",
     data: {name: name, value: value},
     success: function(response){
-      mRecal();
+      mRecal('memory');
     }
   });
 }
 
-//Gets value of memory from the DB, displays to the input, and clears any data
+//Gets value of memory from the DB and puts it through the memoryCheck function
 function mRecal (type) {
   $.ajax({
     type: "GET",
@@ -302,6 +326,11 @@ function mRecal (type) {
   });
 }
 
+/*
+deletes values from the DB.  Type is the column that the item is deleted from.
+for every instance in this application (as of version 1.0), the only thing that is
+deleted is anything with the type of 'memory'.
+*/
 function mDelete (type) {
   $.ajax({
     type: "DELETE",
