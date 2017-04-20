@@ -1,8 +1,3 @@
-var inputOne;
-var inputTwo;
-var answer;
-var operation;
-
 $(function(){
   console.log("Please be gentle.  It's my first time.");
   init();
@@ -18,7 +13,6 @@ function init(){
 //turns buttons on or off
 function eventListeners(value){
   if(value){
-    // $('#calculator').on('click', buttonInput);
     $('#calculator').on('click', '.number', buttonInput);
     $('#calculator').on('click', '.operations', buttonInput);
   } else {
@@ -31,10 +25,12 @@ function createButtons(array){
   var number = 0;
   for (var j = 0; j < array.length; j++) {
     if (array[j].operation=== "null"){
+      //number buttons
       $('#calculator').append("<button class='number' id=number"+number+" operations' data-number='" + array[j].number +
       "'>" + array[j].number + "</button>");
       number++;
     } else if (array[j].number === "null"){
+      //operator buttons
       $('#calculator').append("<button class='operations' id=operation"+j+" operations' data-id='" + array[j].type +
       "'>" + array[j].operation + "</button>");
     }
@@ -53,6 +49,7 @@ makes it possible for the second set of numbers to be pressed.
 */
 
 function buttonInput(){
+  var answer;
   var $el = $(this);
   $('#calculator').data('lastInput', ($el.data('id')));
   var input = $('#numInput').val();
@@ -61,9 +58,7 @@ function buttonInput(){
     $("#calculator").removeData('numberOne');
   } else if ($el.data('id') === 'clear'){
     clearInput();
-    $("#calculator").removeData('numberOne');
-    $("#calculator").removeData('operator');
-    // console.log($("calculator").data());
+    clearData();
   } else if ($el.data('id') === 'square'){
     answer = $('#numInput').val() * $('#numInput').val();
     clearInput();
