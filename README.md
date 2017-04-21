@@ -33,17 +33,18 @@
   - [x] MVP using add
   - [x] switch statement for other operators
   - [X] Clear button
-  - [ ] Create logic for additional buttons
+  - [x] Create logic for additional buttons
     - [x] M+
-    - [ ] M-
+    - [x] M-
     - [x] MR
     - [x] MC
     - [x] Square root
-    - [ ] +/-
+    - [x] +/-
     - [x] Square
-  - [ ] get out bugs, make calculator work the way it's supposed to work
-    - [ ] make decimal work
-- [ ] connect buttons to the db (CRUD)
+  - [x] get out bugs, make calculator work the way it's supposed to work
+    - [x] make decimal work
+    - [x] make zero work right
+- [x] connect buttons to the db (CRUD)
   - [x] POST function to create the values
   - [x] GET to retrieve the values
   - [x] PUT to edit values
@@ -51,6 +52,6 @@
 - [x] Clear calculator when button is pressed after equation
 - [x] Make other buttons besides equals work for getting a result
 - [ ] Put DOM together
-  - [ ] position buttons in the calculator
+  - [x] position buttons in the calculator
   - [ ] colors of the buttons and the actual calculator
 - [ ] Deploy on Website

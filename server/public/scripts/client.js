@@ -88,11 +88,8 @@ function buttonInput(){
   else if ($el.data('id')){
     input = ($el.data('id'));
     operationInput(input);
-  // }   else if ($('#number0')){
-  //   console.log($(this))
-  //   $('#numInput').val($('#numInput').val() + '.');
 } else if ($(this).data('number') === '.'){
-  $('#numInput').val($('#numInput').val() + '.');
+  decimal();
 } else {
     numberInput($el.data('number'));
   }
@@ -117,6 +114,16 @@ function numberInput (input){
   } else {
     $('#numInput').val($('#numInput').val() + input);
   }
+}
+
+function decimal (){
+  if ($("#calculator").data('lastInput')){
+    clearInput();
+    $('#calculator').removeData('lastInput');
+    $('#numInput').val('0.');
+  } else {
+  $('#numInput').val($('#numInput').val() + '.');
+}
 }
 
 /*
