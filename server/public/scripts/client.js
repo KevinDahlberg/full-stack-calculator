@@ -106,10 +106,13 @@ if there is not any data for the last input pressed, then the calculator adds
 that number to the input field.
 */
 function numberInput (input){
-  console.log($("#calculator").data());
+
   if ($("#calculator").data('lastInput')){
     clearInput();
     ($('#calculator').removeData('lastInput'));
+    $("#numInput").val(input);
+  } else if ($('#numInput').val()=='0'){
+    clearInput();
     $("#numInput").val(input);
   } else {
     $('#numInput').val($('#numInput').val() + input);
