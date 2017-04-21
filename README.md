@@ -51,7 +51,7 @@
   - [x] Delete to Delete values
 - [x] Clear calculator when button is pressed after equation
 - [x] Make other buttons besides equals work for getting a result
-- [ ] Put DOM together
+- [x] Put DOM together
   - [x] position buttons in the calculator
-  - [ ] colors of the buttons and the actual calculator
+  - [x] colors of the buttons and the actual calculator
 - [ ] Deploy on Website
