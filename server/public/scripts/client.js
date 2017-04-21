@@ -8,6 +8,7 @@ function init(){
   eventListeners(true);
   getOperators();
   mRecal('memory');
+  intitialValue();
 }
 
 //turns buttons on or off
@@ -37,6 +38,9 @@ function createButtons(array){
   }
 }
 
+function intitialValue(){
+  $('#numInput').val('0');
+}
 /*
 function that takes the button that is pressed and decides whether the button is
 a number or an operation.
@@ -84,7 +88,12 @@ function buttonInput(){
   else if ($el.data('id')){
     input = ($el.data('id'));
     operationInput(input);
-  }   else if ($el.data('number')!=='undefined'){
+  // }   else if ($('#number0')){
+  //   console.log($(this))
+  //   $('#numInput').val($('#numInput').val() + '.');
+} else if ($(this).data('number') === '.'){
+  $('#numInput').val($('#numInput').val() + '.');
+} else {
     numberInput($el.data('number'));
   }
 }
@@ -97,7 +106,7 @@ if there is not any data for the last input pressed, then the calculator adds
 that number to the input field.
 */
 function numberInput (input){
-  console.log($("#calculator").data('lastInput'));
+  console.log($("#calculator").data());
   if ($("#calculator").data('lastInput')){
     clearInput();
     ($('#calculator').removeData('lastInput'));
@@ -115,13 +124,9 @@ Otherwise, the number that is displayed on the input is stored as numberOne, and
 the operator pressed is stored as operator.
 */
 function operationInput(input){
-  console.log($("#calculator").data('lastInput'));
-  // console.log(data + " in operationInput path");
   var $el = $("#calculator");
-
   if($el.data('numberOne')){
     $el.data('operatorTwo', input);
-    // console.log($("#calculator").data());
     operations ($el.data('numberOne'), $("#numInput").val(), $el.data('operator'));
   } else {
     $el.data('numberOne', $("#numInput").val());
@@ -134,16 +139,16 @@ function operations (inputOne, inputTwo, operation){
   console.log(inputOne, inputTwo, operation, "in operations path");
   switch (operation){
     case "add":
-    answer = parseInt(inputOne) + parseInt(inputTwo);
+    answer = parseFloat(inputOne) + parseFloat(inputTwo);
     break;
     case "subtract":
-    answer = parseInt(inputOne) - parseInt(inputTwo);
+    answer = parseFloat(inputOne) - parseFloat(inputTwo);
     break;
     case "multiply":
-    answer = parseInt(inputOne) * parseInt(inputTwo);
+    answer = parseFloat(inputOne) * parseFloat(inputTwo);
     break;
     case "divide":
-    answer = parseInt(inputOne) / parseInt(inputTwo);
+    answer = parseFloat(inputOne) / parseFloat(inputTwo);
     break;
     case "equals":
     console.log("equals clicked");
@@ -169,7 +174,7 @@ the result to the input field
 function sqRoot(input){
   console.log('in sqRoot Path');
   var i = 0;
-  var number = parseInt(input);
+  var number = parseFloat(input);
   while ((i*i)<number){
     i++;
     if((i*i)===number){
@@ -196,9 +201,9 @@ positive
 */
 function plusMinus(input){
   var answer;
-  if (parseInt(input)>0) {
+  if (parseFloat(input)>0) {
     answer = -Math.abs(input);
-  } else if (parseInt(input)<0) {
+  } else if (parseFloat(input)<0) {
     answer = Math.abs(input);
   }
   clearInput();
@@ -218,7 +223,7 @@ function memoryAdd (input){
   var oldNum = $('#numInput').data('mem');
   console.log('The memoryAdd respons is ', oldNum);
   if (oldNum){
-    var updatedNum = parseInt(input) + parseInt(oldNum);
+    var updatedNum = parseFloat(input) + parseFloat(oldNum);
     console.log('Updated Num is ', updatedNum );
     $.when(mPlus('memory', updatedNum)).then(mRecal('memory')).then(memoryRecal());
   } else {
@@ -235,7 +240,7 @@ function memoryMinus (input){
   var oldNum = $('#numInput').data('mem');
   console.log('The old number is, ', oldNum);
   if (oldNum){
-    var updatedNum = parseInt(oldNum) - parseInt (input);
+    var updatedNum = parseFloat(oldNum) - parseFloat (input);
     console.log('the updated number is', updatedNum);
     mPlus('memory', updatedNum);
   } else {
@@ -272,6 +277,7 @@ function memoryCheck (input){
 //clears the input
 function clearInput(){
   $("#numInput").val('');
+  intitialValue();
 }
 
 function clearData(){
@@ -337,7 +343,7 @@ function mDelete (type) {
     url: "memory/mdelete/"+type+'/',
     success: function (response){
       clearInput();
-      console.log(response);
+      intitialValue();
     }
   });
 }
