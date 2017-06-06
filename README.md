@@ -2,6 +2,7 @@
 
 Calculator application that uses Javascript and jQuery on the front end, and uses Node.js and SQL on the server side.  This project is a showcase of the material learned in the first half of the 20 week program at Prime Digital Academy.
 
+[assignment instructions](https://github.com/KevinDahlberg/full-stack-calculator/blob/master/INSTRUCTIONS.md)
 ## Setup
 
 After Download:
